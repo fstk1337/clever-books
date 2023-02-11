@@ -1,0 +1,48 @@
+.stars-wrapper {
+    display: flex;
+    flex-direction: row;
+    column-gap: 6px;
+    &.stars-small {
+        .star-item {
+            width: 14px;
+            height: 14px;
+            svg {
+                width: 12.63px;
+                height: 11.56px;
+            }
+        }
+    }
+    &.stars-medium {
+        .star-item {
+            width: 24px;
+            height: 24px;
+            svg {
+                width: 20px;
+                height: 19px;
+            }
+        }
+    }
+    &.stars-big {
+        .star-item {
+            width: 34px;
+            height: 34px;
+            svg {
+                width: 27.63px;
+                height: 26.56px;
+            }
+        }
+    }
+}
+
+.star-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    &.active {
+        svg {
+            fill: #FFBC1F;
+        }
+    }
+}

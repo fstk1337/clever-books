@@ -1,0 +1,72 @@
+@import '../../scss/variables';
+
+.content-wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    row-gap: 16px;
+    @media (min-width: 321px) {
+        row-gap: 24px;
+    }
+    @media (min-width: 769px) {
+        row-gap: 32px;
+    }
+}
+
+.rules-heading {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    letter-spacing: 0.1px;
+    font-size: 18px;
+    line-height: 28px;
+    color: $main-dark;
+    margin-bottom: 32px;
+    @media (min-width: 900px) {
+        font-size: 32px;
+        line-height: 40px;
+    }
+}
+
+.rules-text {
+    font-family: 'Montserrat';
+    font-weight: 400;
+    letter-spacing: 0.1px;
+    color: $main-dark;
+    padding-bottom: 24px;
+}
+
+.point {
+    margin-bottom: 32px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.paragraph {
+    margin-bottom: 16px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.subtitle {
+    padding-left: 30px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.sub-subtitle {
+    padding-left: 60px;
+}
+
+.sub-sub-subtitle {
+    padding-left: 90px;
+}

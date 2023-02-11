@@ -1,0 +1,141 @@
+@import '../../scss/variables';
+
+.header-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    max-width: 1440px;
+    margin-bottom: 8px;
+    @media screen and (min-width: 400px) {
+        margin-bottom: 32px;
+    }
+    @media screen and (min-width: 1110px) {
+        margin-bottom: 47px;
+    }
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 24px 16px 24px;
+    width: 100%;
+    @media screen and (min-width: 400px) {
+        padding: calc(32px/768px*100vw) calc(64px/768px*100vw) calc(22px/768px*100vw);
+    }
+    @media screen and (min-width: 768px) {
+        padding: 32px 64px 22px;
+    }
+    @media screen and (min-width: 1110px) {
+        padding: 32px calc(64px/768px*100vw) 15px;
+    }
+    @media screen and (min-width: 1440px) {
+        padding-left: 165px;
+        padding-right: 165px;
+    }
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    img {
+        margin-right: 120px;
+    }
+    h1 {
+        font-family: 'Montserrat';
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 28px;
+        letter-spacing: 0.1px;
+        color: $main-dark;
+        @media screen and (min-width: 400px) {
+            font-size: 32px;
+            line-height: 40px;
+        }
+    }
+}
+
+.logo-link {
+    display: none;
+    @media screen and (min-width: 1110px) {
+        display: flex;
+    }
+}
+
+.burger-btn {
+    cursor: pointer;
+    border: 0;
+    background-color: #fff;
+    margin-right: 29px;
+    width: 24px;
+    height: 24px;
+    @media screen and (min-width: 400px) {
+        margin-right: 24px;
+        height: 32px;
+        width: 32px;
+    }
+    @media screen and (min-width: 1110px) {
+        display: none;
+    }
+    svg {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        path {
+            position: absolute;
+            transition: all 0.5s ease;
+        }
+        &:nth-child(2) {
+            transform: translateY(-150%);
+        }
+        &:nth-child(3) {
+            transform: translateY(150%);
+        }
+    }
+    &.cross svg {
+        path:first-child {
+            opacity: 0;
+        }
+        path:nth-child(2) {
+            transform: translateX(35%) rotate(45deg);
+            fill: url(#orange_gradient);
+        }
+        path:nth-child(3) {
+            transform: translateY(35%) translateX(-35%) rotate(-45deg);
+            fill: url(#orange_gradient);
+        }
+    }
+}
+
+.person {
+    display: none;
+    @media screen and (min-width: 900px) {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 300px;
+    }
+}
+
+.name {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: right;
+    letter-spacing: 0.1px;
+    color: $main-dark;
+    margin-right: 16px;
+}
+
+.avatar {
+    width: 58px;
+    height: 58px;
+    background: url('../../assets/img/avatar.png');
+    filter: drop-shadow(0px 2px 4px rgba(191, 196, 201, 0.2))
+            drop-shadow(0px 3px 4px rgba(191, 196, 201, 0.18))
+            drop-shadow(0px 1px 5px rgba(191, 196, 201, 0.24));
+    border-radius: 150px;
+}

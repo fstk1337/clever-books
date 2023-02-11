@@ -1,0 +1,75 @@
+@import '../../scss/variables';
+
+.review-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 8px;
+    @media screen and (min-width: 600px) {
+        row-gap: 16px;
+    }
+    &:nth-child(2) .review-author img {
+        padding: 5.5px 0;
+        @media screen and (min-width: 600px) {
+            padding: 0;
+        }
+    }
+}
+
+.review-author {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 18px;
+    @media screen and (min-width: 769px) {
+        column-gap: 24px;
+    }
+    img {
+        padding: 9.5px 0;
+        @media screen and (min-width: 600px) {
+            padding: 0;
+        }
+    }
+    & .review-author-info {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Montserrat';
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 20px;
+        letter-spacing: 0.1px;
+        color: #727272;
+        @media screen and (min-width: 600px) {
+            flex-direction: row;
+            column-gap: 24px;
+        }
+        @media screen and (min-width: 769px) {
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
+}
+
+.review-text {
+    p {
+        font-family: 'Montserrat';
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 20px;
+        letter-spacing: 0.1px;
+        color: $main-dark;
+        @media screen and (min-width: 600px) {
+            font-size: 16px;
+            line-height: 24px;
+        }
+        @media screen and (min-width: 769px) {
+            font-size: 16px;
+            line-height: 24px;
+        }
+        @media screen and (min-width: 1200px) {
+            max-width: 730px;
+        }
+    }
+}

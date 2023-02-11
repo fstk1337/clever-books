@@ -1,0 +1,33 @@
+.main-wrapper {
+    width: 100vw;
+    flex: 1 0 auto;
+    max-width: 320px;
+    overflow: hidden;
+    @media screen and (min-width: 400px) {
+        max-width: 1110px;
+    }
+    @media screen and (min-width: 769px) {
+        max-width: 1440px;
+    }
+}
+
+.app-main {
+    display: flex;
+    column-gap: 6px;
+    padding: 0 16px;
+    @media screen and (min-width: 400px) {
+        padding: 0 33px;
+    }
+    @media screen and (min-width: 500px) {
+        padding: 0 42px;
+    }
+    @media screen and (min-width: 600px) {
+        padding: 0 64px;
+    }
+    @media screen and (min-width: 1110px) {
+        padding: 0 96px;
+    }
+    @media screen and (min-width: 1440px) {
+        padding: 0 165px;
+    }
+}
