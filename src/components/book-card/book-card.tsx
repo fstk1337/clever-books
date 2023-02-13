@@ -8,12 +8,19 @@ import { BookCardProps } from './book-card-props';
 
 import './book-card.scss';
 
+const convertDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    
+    return `${date.getDate()}.${month}`;
+}
+
 export const BookCard: FC<BookCardProps> = (props) => {
     let buttonText = 'Забронировать';
     let buttonStyle = 'active';
 
     if (!props.free) {
-        buttonText = props.busyUntil ? `занята до ${props.busyUntil}` : 'Забронирована';
+        buttonText = props.busyUntil ? `занята до ${convertDate(props.busyUntil)}` : 'Забронирована';
         buttonStyle = props.busyUntil ? 'busy' : 'booked';
     }
  

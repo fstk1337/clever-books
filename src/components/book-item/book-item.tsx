@@ -8,12 +8,19 @@ import { BookItemProps } from './book-item-props';
 
 import './book-item.scss';
 
+const convertDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    
+    return `${date.getDate()}.${month}`;
+}
+
 export const BookItem: FC<BookItemProps> = (props) =>  {
     let buttonText = 'Забронировать';
     let buttonStyle = 'active';
 
     if (!props.free) {
-        buttonText = props.busyUntil ? `занята до ${props.busyUntil}` : 'Забронирована';
+        buttonText = props.busyUntil ? `занята до ${convertDate(props.busyUntil)}` : 'Забронирована';
         buttonStyle = props.busyUntil ? 'busy' : 'booked';
     }
 
