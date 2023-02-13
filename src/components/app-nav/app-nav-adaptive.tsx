@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 
-import { disableShow } from '../../app/store/slices/nav-slice';
+import { disableShow } from '../../app/redux/nav-slice';
 import { navTabs } from '../../constants/nav-tabs';
 import { useAppDispatch, useAppSelector, useClickOutside } from '../../hooks';
 import { AppNavTab } from '../app-nav-tab/app-nav-tab';

@@ -14,7 +14,7 @@ export const categories: BookCategory[] = [
     {
         id: 1,
         name: 'business',
-        label: 'Бизнес-книги'
+        label: 'Бизнес'
     },
     {
         id: 2,

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
-import { disableShow, disableShowCats, toggleShowCats } from '../../app/store/slices/nav-slice';
+import { disableShow, disableShowCats, toggleShowCats } from '../../app/redux/nav-slice';
 import { ReactComponent as ArrowIcon } from '../../assets/icon/arrowdown.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AppNavCategories } from '../app-nav-categories/app-nav-categories';

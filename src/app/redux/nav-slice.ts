@@ -38,7 +38,7 @@ export const navSlice = createSlice({
         showCats: false
       }
     )
-  },
+  }
 })
 
 export const { enableShow, disableShow, toggleShowCats, disableShowCats } = navSlice.actions;

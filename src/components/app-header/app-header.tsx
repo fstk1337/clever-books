@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
-import { disableShow, enableShow } from '../../app/store/slices/nav-slice';
+import { disableShow, enableShow } from '../../app/redux/nav-slice';
 import { ReactComponent as Burger } from '../../assets/icon/burger.svg';
 import logo from '../../assets/img/logo.png';
 import { useAppDispatch, useAppSelector } from '../../hooks';
