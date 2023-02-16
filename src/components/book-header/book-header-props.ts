@@ -1,6 +1,6 @@
-import { BookCategory } from '../../constants/categories';
+import { CategoryModel } from 'src/models/category.model';
 
 export interface BookHeaderProps {
-    category: BookCategory;
+    category: CategoryModel;
     title: string;
 }

@@ -28,7 +28,7 @@ export const BookCard: FC<BookCardProps> = (props) => {
         <Link to={`${props.route}/${props.id}`} className='book-card' data-test-id='card'>
             <div className="card-wrapper">
                 <div className='card-info-wrapper'>
-                    <img className='card-image' src={props.image} alt={props.image? 'book' : ''}/>
+                    <img className='card-image' src={props.image} alt='' />
                     <div className='card-stars'>
                         {(props.stars <= 0 || props.stars >5) && 'ещё нет оценок'}
                         {(props.stars >0 && props.stars <= 5) && 

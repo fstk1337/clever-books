@@ -1,10 +1,10 @@
-import { BookImage } from '../../constants/book-images';
-
 export interface BookMainProps {
     author: string;
     title: string;
-    mainImage?: BookImage;
-    images?: BookImage[];
+    mainImage?: string;
+    images?: [{
+        url: string;
+    }];
     rating: number;
     free: boolean;
     busyUntil?: string;

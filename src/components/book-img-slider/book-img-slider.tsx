@@ -28,9 +28,9 @@ export const BookImgSlider: FC<BookImgSliderProps> = ({images, slidesPerView, ac
          }}
         scrollbar={{ draggable: true }}
     >
-        {images.map((image) => (
-            <SwiperSlide data-test-id={image.id === 1 ? 'slide-big' : 'slide-mini'} className={classNames('swiper-slide-visible', active === image.id ? 'active' : undefined)} key={image.id} onClick={() => handler(image.id)}>
-                <img src={image.image} alt='book' />
+        {images.map((image, index) => (
+            <SwiperSlide data-test-id={index === 0 ? 'slide-big' : 'slide-mini'} className={classNames('swiper-slide-visible', active === image.url ? 'active' : undefined)} key={image.url} onClick={() => handler(image.url)}>
+                <img src={image.url} alt='' />
             </SwiperSlide>
         ))}
     </Swiper>

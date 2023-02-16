@@ -36,7 +36,7 @@ export interface BookModel {
 }
 
 export interface BookModelResponse {
-    data: BookModel | null;
+    data: BookModel[] | null;
     error?: BookError;
 }
 

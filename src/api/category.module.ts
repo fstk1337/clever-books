@@ -1,10 +1,11 @@
-import { AxiosInstance } from 'axios';
+import { AxiosInstance, AxiosResponse } from 'axios';
+import { CategoryModel } from 'src/models/category.model';
 
 const url = '/categories';
 
 export const CategoryModule = (instance: AxiosInstance) => {
-    const getAllCategories = () => instance.get(url);
-    
+    const getAllCategories = (): Promise<AxiosResponse<CategoryModel[]>> => instance.get(url);
+
     return {
         getAllCategories
     };

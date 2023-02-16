@@ -1,8 +1,10 @@
-import { BookImage } from '../../constants/book-images';
-
 export interface BookImgSliderProps {
-    images: BookImage[];
+    images: [
+        {
+            url: string;
+        }
+    ];
     slidesPerView: number;
-    active: number;
-    handler: (id: number) => void;
+    active: string;
+    handler: (url: string) => void;
 }

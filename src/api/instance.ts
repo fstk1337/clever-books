@@ -5,5 +5,7 @@ export const instance = axios.create({
     withCredentials: false,
     headers: {
         Accept: 'application/json'
-    }
+    },
+    responseType: 'json',
+    responseEncoding: 'utf-8'
 });

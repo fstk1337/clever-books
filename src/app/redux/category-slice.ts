@@ -1,48 +1,93 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CategoryError, CategoryModel, CategoryResponse } from 'src/models/category-model';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { api } from 'src/api';
+import { CategoryModel } from 'src/models/category.model';
+
+import { RootState } from '../store';
 
 interface CategoryState {
-    data: {
-        categories: CategoryModel[];
-    };
-    status: 'init' | 'loading' | 'success' | 'error';
-    error?: CategoryError;
+    categories: CategoryModel[];
+    status: 'idle' | 'loading' | 'success' | 'error';
+    error: string | null;
 }
 
 const initialState: CategoryState = {
-    data: {
-        categories: []
-    },
-    status: 'init'
+    categories: [],
+    status: 'idle',
+    error: null
 };
+
+export const fetchCategories = createAsyncThunk<CategoryModel[], undefined, { rejectValue: string }>('categories/getAll',
+    async (_, { rejectWithValue }) => {
+        const response = await api.categories.getAllCategories();
+
+        if (response.status !== 200) {
+            return rejectWithValue('Server Error.');
+        }
+
+        return response.data;
+    },
+    {
+      condition: (_, { getState }) => {
+        const { category } = getState() as RootState;
+
+        if (category.status === 'success' || category.status === 'loading') {
+          return false;
+        }
+
+        return true;
+      }
+    }
+);
 
 export const categorySlice = createSlice({
     name: 'category',
     initialState,
     reducers: {
-        loadStart: (state: CategoryState): CategoryState => (
+        loadStart: (): CategoryState => (
             {
-                data: {...state.data},
-                status: 'loading'
+                categories: [],
+                status: 'loading',
+                error: null
             }
         ),
-        loadSuccess: (state: CategoryState, action: PayloadAction<CategoryModel[]>): CategoryState => (
+        loadSuccess: (_, action: PayloadAction<CategoryModel[]>): CategoryState => (
             {
-                data: {
-                    categories: action.payload
-                },
-                status: 'success'
+                categories: action.payload,
+                status: 'success',
+                error: null
             }
         ),
-        loadError: (state: CategoryState, action: PayloadAction<CategoryResponse>): CategoryState => (
+        loadError: (_, action: PayloadAction<string>): CategoryState => (
             {
-                data: {
-                    categories: []
-                },
+                categories: [],
                 status: 'error',
-                error: action.payload.error
+                error: action.payload
             }
         )
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchCategories.pending, () => (
+                {
+                    categories: [],
+                    status: 'loading',
+                    error: null
+                }
+            ))
+            .addCase(fetchCategories.fulfilled, (_, action) => (
+                {
+                    categories: action.payload,
+                    status: 'success',
+                    error: null
+                }
+            ))
+            .addCase(fetchCategories.rejected, (_, action) => (
+                {
+                    categories: [],
+                    status: 'error',
+                    error: action.payload || null
+                }
+            ))
     }
 });
 

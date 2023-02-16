@@ -1,12 +1,11 @@
 import { FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
-import { loadBooksAction } from 'src/app/redux/book-saga';
-import { loadCategoriesAction } from 'src/app/redux/category-saga';
+import { fetchBooks } from 'src/app/redux/book-slice';
+import { fetchCategories } from 'src/app/redux/category-slice';
 import { RootState } from 'src/app/store';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { BookModel } from 'src/models';
-import { CategoryModel } from 'src/models/category-model';
 
 import { BookCard } from '../book-card/book-card';
 import { BookItem } from '../book-item/book-item';
@@ -23,12 +22,12 @@ export const BookList: FC<BookListProps> = ({listStyle}) => {
     const dispatch = useAppDispatch();
     const location = useLocation().pathname;
     
-    let booksToShow: BookModel[] = useAppSelector((state: RootState) => state.book.data.books);
-    const categories: CategoryModel[] = useAppSelector((state: RootState) => state.category.data.categories);
+    let booksToShow: BookModel[] = useAppSelector((state: RootState) => state.book.books);
+    const categories = useAppSelector((state) => state.category.categories);
 
     useEffect(() => {
-        dispatch(loadCategoriesAction());
-        dispatch(loadBooksAction());
+        dispatch(fetchCategories());
+        dispatch(fetchBooks());
     }, [dispatch]);
 
     if (location !== '/books/all') {

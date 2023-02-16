@@ -38,7 +38,7 @@ const getSlidesPerView = (imagesCount: number, screen: number) => {
 }
 
 export const BookMain: FC<BookMainProps> = (props) => {
-    const [activeImage, setActiveImage] = useState<number>(props.images? props.images[0].id : 0);
+    const [activeImage, setActiveImage] = useState<string>(props.images? props.images[0].url : '');
     const { buttonText, buttonStyle } = getButtonOptions(props.free, props.busyUntil);
     const revsCount = props.rating === 0 ? 0 : reviews.length;
     const [showReviews, setShowReviews] = useState(true);
@@ -50,7 +50,7 @@ export const BookMain: FC<BookMainProps> = (props) => {
                     <div className={classNames('book-image-wrapper', props.images? '' : 'no-image')}>
                         {props.images && props.images.length > 1 &&
                             <div className='book-large-image'>
-                                <img src={props.images? props.images.find(image => image.id === activeImage)?.image : ''} alt={props.images && props.images.length > 0 ? 'book' : ''} />
+                                <img src={activeImage} alt={props.images && props.images.length > 0 ? 'book' : ''} />
                             </div>
                         }
                         {props.images &&
@@ -59,7 +59,7 @@ export const BookMain: FC<BookMainProps> = (props) => {
                                     images={props.images}
                                     slidesPerView={getSlidesPerView(props.images.length, 1200)}
                                     active={activeImage}
-                                    handler={(id: number) => setActiveImage(id)}
+                                    handler={(url: string) => setActiveImage(url)}
                                 />
                                 <div className='swiper-pagination' />
                             </React.Fragment>
