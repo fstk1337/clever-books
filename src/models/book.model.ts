@@ -7,6 +7,15 @@ export interface BookingModel {
     customerLastName: string;
 }
 
+const EmptyBooking: BookingModel = {
+    id: 0,
+    order: false,
+    dateOrder: '',
+    customerId: 0,
+    customerFirstName: '',
+    customerLastName: ''
+}
+
 export interface DeliveryModel {
     id: number;
     handed: boolean;
@@ -15,6 +24,16 @@ export interface DeliveryModel {
     recipientId: number;
     recipientFirstName: string;
     recipientLastName: string;
+}
+
+const EmptyDelivery: DeliveryModel = {
+    id: 0,
+    handed: false,
+    dateHandedFrom: '',
+    dateHandedTo: '',
+    recipientId: 0,
+    recipientFirstName: '',
+    recipientLastName: ''
 }
 
 export interface HistoryModel {
@@ -33,6 +52,21 @@ export interface BookModel {
     booking: BookingModel,
     delivery: DeliveryModel,
     histories: HistoryModel[]
+}
+
+export const EmptyBook: BookModel = {
+    issueYear: '',
+    rating: 0,
+    title: '',
+    authors: [],
+    image: {
+        url: ''
+    },
+    categories: [],
+    id: 0,
+    booking: EmptyBooking,
+    delivery: EmptyDelivery,
+    histories: []
 }
 
 export interface BookModelResponse {

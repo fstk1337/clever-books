@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
-import { RootState } from 'src/app/store';
+import { getAllBooks } from 'src/app/redux/book-slice';
+import { getAllCategories } from 'src/app/redux/category-slice';
 import { BookModel } from 'src/models';
-import { CategoryModel } from 'src/models/category.model';
 
 import { disableShow } from '../../app/redux/nav-slice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -17,8 +17,8 @@ const countBooksInCategory = (categoryName: string, bookList: BookModel[]) => (
 )
 
 export const AppNavCategories: FC<AppNavCategoriesProps> = ({show, type}) => {
-    const categories: CategoryModel[] = useAppSelector((state: RootState) => state.category.categories);
-    const books: BookModel[] = useAppSelector((state: RootState) => state.book.books);
+    const categories = useAppSelector(getAllCategories());
+    const books = useAppSelector(getAllBooks());
 
     const location = useLocation();
     const dispatch = useAppDispatch();

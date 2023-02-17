@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { fetchOneBook } from 'src/app/redux/book-slice';
+import { getCategoryByPath } from 'src/app/redux/category-slice';
+import { fetchOneBook, getBookDetails } from 'src/app/redux/one-book-slice';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { EmptyCategory } from 'src/models/category.model';
+import { EmptyBook } from 'src/models/one-book.model';
 
 import { BookHeader } from '../../components/book-header/book-header';
 import { BookMain } from '../../components/book-main/book-main';
@@ -13,8 +15,9 @@ export const BookPage = () => {
     const { bookId } = useParams();
     const dispatch = useAppDispatch();
     const location = useLocation();
-    const currentBook = useAppSelector(state => state.book.currentBook);
-    const categories = useAppSelector(state => state.category.categories);
+    const currentBook = useAppSelector(getBookDetails(bookId || '0')) || EmptyBook;
+    const currentCategory = useAppSelector(getCategoryByPath(location.pathname.split('/')[2]));
+    
 
     useEffect(() => {
         dispatch(fetchOneBook(bookId || '0'));
@@ -23,7 +26,7 @@ export const BookPage = () => {
     return (
         <div className='book-wrapper'>
             <BookHeader
-                category={categories.find(category => location.pathname === `/books/${category.name}/${bookId}`) || EmptyCategory}
+                category={currentCategory || EmptyCategory}
                 title={currentBook.title}
             />
             <BookMain
