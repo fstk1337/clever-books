@@ -81,4 +81,8 @@ export const getBookDetails = (id: string) => (
     createSelector(getBookState, (state) => state.bookDetails.find(detail => detail.id === Number(id)))
 )
 
+export const isOneBookLoading = () => (
+    createSelector(getBookState, (state) => state.status === 'loading')
+)
+
 export const oneBookReducer = oneBookSlice.reducer;

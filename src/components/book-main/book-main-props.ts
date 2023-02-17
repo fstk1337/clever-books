@@ -1,11 +1,5 @@
+import { OneBookModel } from 'src/models';
+
 export interface BookMainProps {
-    author: string;
-    title: string;
-    mainImage?: string;
-    images?: [{
-        url: string;
-    }];
-    rating: number;
-    free: boolean;
-    busyUntil?: string;
+    book: OneBookModel;
 }

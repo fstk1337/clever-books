@@ -1,0 +1,33 @@
+.loader-wrapper {
+    display: flex;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: rgba(54, 54, 54, 0.3);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.spinner-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    svg {
+        width: 68.75px;
+        height: 68.75px;
+        animation: spin 1s linear infinite;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

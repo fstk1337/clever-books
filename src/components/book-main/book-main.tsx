@@ -3,7 +3,6 @@ import classNames from 'classnames';
 
 import { ReactComponent as HideReviewsIcon } from '../../assets/icon/arrowup.svg';
 import Avatar from '../../assets/img/reviewer-avatar.png';
-import { reviews } from '../../constants/reviews';
 import { useWindowWidth } from '../../hooks';
 import { AppButton } from '../app-button/app-button';
 import { BookImgSlider } from '../book-img-slider/book-img-slider';
@@ -37,27 +36,35 @@ const getSlidesPerView = (imagesCount: number, screen: number) => {
     return slidesCount;
 }
 
-export const BookMain: FC<BookMainProps> = (props) => {
-    const [activeImage, setActiveImage] = useState<string>(props.images? props.images[0].url : '');
-    const { buttonText, buttonStyle } = getButtonOptions(props.free, props.busyUntil);
-    const revsCount = props.rating === 0 ? 0 : reviews.length;
+const convertDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    const monthNames = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+    const month = monthNames[date.getMonth()];
+    
+    return `${date.getDate()} ${month} ${date.getFullYear()}`;
+}
+
+export const BookMain: FC<BookMainProps> = ({book}) => {
+    const [activeImage, setActiveImage] = useState<string>(book.images? book.images[0].url : '');
+    const { buttonText, buttonStyle } = getButtonOptions(book.booking? book.booking.order : true, book.booking?.dateOrder);
+    const revsCount = book.comments? book.comments.length : 0;
     const [showReviews, setShowReviews] = useState(true);
 
     return (
         <div className='book-main-wrapper'>
             <div className='book-main'>
                 <div className='book-info'>
-                    <div className={classNames('book-image-wrapper', props.images? '' : 'no-image')}>
-                        {props.images && props.images.length > 1 &&
+                    <div className={classNames('book-image-wrapper', book.images? '' : 'no-image')}>
+                        {book.images && book.images.length > 1 &&
                             <div className='book-large-image'>
-                                <img src={activeImage} alt={props.images && props.images.length > 0 ? 'book' : ''} />
+                                <img src={activeImage} alt='' />
                             </div>
                         }
-                        {props.images &&
+                        {book.images &&
                             <React.Fragment>
                                 <BookImgSlider
-                                    images={props.images}
-                                    slidesPerView={getSlidesPerView(props.images.length, 1200)}
+                                    images={book.images}
+                                    slidesPerView={getSlidesPerView(book.images.length, 1200)}
                                     active={activeImage}
                                     handler={(url: string) => setActiveImage(url)}
                                 />
@@ -67,16 +74,14 @@ export const BookMain: FC<BookMainProps> = (props) => {
                     </div>
                     <div className='book-info-reserve'>
                         <div className='book-info-text'>
-                            <div className='book-title'>{props.title}</div>
-                            <div className='book-author'>{props.author}</div>
+                            <div className='book-title'>{book.title}</div>
+                            <div className='book-author'>{book.authors}</div>
                         </div>
                         <AppButton styles={['book-btn-big', buttonStyle]} label={buttonText} />
                         {useWindowWidth() >= 1200 &&
                             <div className="book-description">
                                 <div className='book-info-heading'>О книге</div>
-                                <p>Алгоритмы — это всего лишь пошаговые алгоритмы решения задач, и большинство таких задач уже были кем-то решены, протестированы и проверены. Можно, конечно, погрузится в глубокую философию гениального Кнута, изучить многостраничные фолианты с доказательствами и обоснованиями, но хотите ли вы тратить на это свое время?<br/><br/>
-                                Откройте великолепно иллюстрированную книгу и вы сразу поймете, что алгоритмы — это просто. А грокать алгоритмы — это веселое и увлекательное занятие.
-                                </p>
+                                <p>{book.description}</p>
                             </div>
                         }
                     </div>
@@ -84,22 +89,20 @@ export const BookMain: FC<BookMainProps> = (props) => {
                 {useWindowWidth() < 1200 &&
                     <div className="book-description">
                         <div className='book-info-heading'>О книге</div>
-                        <p>Алгоритмы — это всего лишь пошаговые алгоритмы решения задач, и большинство таких задач уже были кем-то решены, протестированы и проверены. Можно, конечно, погрузится в глубокую философию гениального Кнута, изучить многостраничные фолианты с доказательствами и обоснованиями, но хотите ли вы тратить на это свое время?<br/><br/>
-                        Откройте великолепно иллюстрированную книгу и вы сразу поймете, что алгоритмы — это просто. А грокать алгоритмы — это веселое и увлекательное занятие.
-                        </p>
+                        <p>{book.description}</p>
                     </div>
                 }
-                <div className={classNames('book-rating', props.rating === 0 ? 'empty-rates' : '')}>            
+                <div className={classNames('book-rating', book.rating === 0 ? 'empty-rates' : '')}>            
                     <div className='book-info-heading'>
                         Рейтинг
                     </div>
                     <div className='rating-container'>
-                        <BookStars quantity={Math.trunc(props.rating)} size='medium' />
-                        {props.rating > 0 &&
-                            <span className='rates'>{props.rating}</span>
+                        <BookStars quantity={Math.trunc(book.rating)} size='medium' />
+                        {book.rating > 0 &&
+                            <span className='rates'>{book.rating}</span>
                         }
                     </div>
-                    {props.rating === 0 && <div className='no-rates'>ещё нет оценок</div>}
+                    {book.rating === 0 && <div className='no-rates'>ещё нет оценок</div>}
                 </div>
                 <div className='book-details'>
                     <div className='book-info-heading'>Подробная информация</div>
@@ -124,19 +127,19 @@ export const BookMain: FC<BookMainProps> = (props) => {
                             </ul>
                             <ul>
                                 <li className='detail-data'>
-                                    Питер
+                                    {book.publish}
                                 </li>
                                 <li className='detail-data'>
-                                    2019
+                                    {book.issueYear}
                                 </li>
                                 <li className='detail-data'>
-                                    288
+                                    {book.pages}
                                 </li>
                                 <li className='detail-data'>
-                                    Мягкая обложка
+                                    {book.cover}
                                 </li>
                                 <li className='detail-data'>
-                                    70x100
+                                    {book.format}
                                 </li>
                             </ul>
                         </div>
@@ -157,16 +160,16 @@ export const BookMain: FC<BookMainProps> = (props) => {
                             </ul>
                             <ul>
                                 <li className='detail-data'>
-                                    Компьютерная литература
+                                    {book.categories[0]}
                                 </li>
                                 <li className='detail-data'>
-                                    370 г
+                                    {book.weight}
                                 </li>
                                 <li className='detail-data'>
-                                    978-5-4461-0923-4
+                                    {book.ISBN}
                                 </li>
                                 <li className='detail-data'>
-                                    ООО «Питер Мейл». РФ, 198 206, г. Санкт-Петербург, Петергофское ш, д. 73, лит. А29
+                                    {book.producer}
                                 </li>
                             </ul>
                         </div>
@@ -186,13 +189,13 @@ export const BookMain: FC<BookMainProps> = (props) => {
                     </div>
                     {revsCount !== 0 &&
                         <div className={classNames('reviews-container', showReviews ? undefined : 'hidden')}>
-                            {reviews.map(review => 
+                            {book.comments.map(review => 
                                 <BookReview
                                     key={review.id}
-                                    avatar={review.avatar === 'Avatar' ? Avatar : Avatar}
-                                    name={review.name}
-                                    date={review.date}
-                                    stars={review.stars}
+                                    avatar={Avatar}
+                                    name={`${review.user.firstName} ${review.user.lastName}`}
+                                    date={convertDate(review.createdAt)}
+                                    stars={review.rating}
                                     text={review.text}
                                 />
                             )}

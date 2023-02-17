@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { getCategoryByPath } from 'src/app/redux/category-slice';
+import { fetchCategories, getCategoryByPath } from 'src/app/redux/category-slice';
 import { fetchOneBook, getBookDetails } from 'src/app/redux/one-book-slice';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { EmptyCategory } from 'src/models/category.model';
@@ -20,6 +20,7 @@ export const BookPage = () => {
     
 
     useEffect(() => {
+        dispatch(fetchCategories());
         dispatch(fetchOneBook(bookId || '0'));
     }, [dispatch, bookId])
 
@@ -30,13 +31,7 @@ export const BookPage = () => {
                 title={currentBook.title}
             />
             <BookMain
-                author={currentBook.authors[0]}
-                title={currentBook.title}
-                mainImage={currentBook.images[0].url}
-                images={currentBook.images}
-                rating={currentBook.rating}
-                free={!currentBook.booking || !currentBook.booking.order}
-                busyUntil={currentBook.booking ? currentBook.booking.dateOrder : undefined}    
+                book={currentBook}
             />
         </div>
     )

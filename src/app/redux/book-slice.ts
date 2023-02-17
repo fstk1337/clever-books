@@ -75,4 +75,8 @@ export const getAllBooks = () => (
     createSelector(getBookState, (state) => state.books)
 )
 
+export const isBooksLoading = () => (
+    createSelector(getBookState, (state) => state.status === 'loading')
+)
+
 export const bookReducer = bookSlice.reducer;

@@ -79,4 +79,8 @@ export const getCategoryByPath = (path: string) => (
     createSelector(getCategoryState, (state) => state.categories.find(category => category.path === path))
 )
 
+export const isCategoriesLoading = () => (
+    createSelector(getCategoryState, (state) => state.status === 'loading')
+)
+
 export const categoryReducer = categorySlice.reducer;
