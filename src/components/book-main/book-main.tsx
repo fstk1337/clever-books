@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react';
 import classNames from 'classnames';
 
 import { ReactComponent as HideReviewsIcon } from '../../assets/icon/arrowup.svg';
-import Avatar from '../../assets/img/reviewer-avatar.png';
 import { useWindowWidth } from '../../hooks';
 import { AppButton } from '../app-button/app-button';
 import { BookImgSlider } from '../book-img-slider/book-img-slider';
@@ -45,7 +44,7 @@ const convertDate = (dateString: string): string => {
 }
 
 export const BookMain: FC<BookMainProps> = ({book}) => {
-    const [activeImage, setActiveImage] = useState<string>(book.images? book.images[0].url : '');
+    const [activeImage, setActiveImage] = useState<string>(book.images[0].url);
     const { buttonText, buttonStyle } = getButtonOptions(book.booking? book.booking.order : true, book.booking?.dateOrder);
     const revsCount = book.comments? book.comments.length : 0;
     const [showReviews, setShowReviews] = useState(true);
@@ -57,7 +56,7 @@ export const BookMain: FC<BookMainProps> = ({book}) => {
                     <div className={classNames('book-image-wrapper', book.images? '' : 'no-image')}>
                         {book.images && book.images.length > 1 &&
                             <div className='book-large-image'>
-                                <img src={activeImage} alt='' />
+                                <img src={`https://strapi.cleverland.by${activeImage}`} alt='' />
                             </div>
                         }
                         {book.images &&
@@ -192,7 +191,7 @@ export const BookMain: FC<BookMainProps> = ({book}) => {
                             {book.comments.map(review => 
                                 <BookReview
                                     key={review.id}
-                                    avatar={Avatar}
+                                    avatar={review.user.avatarUrl}
                                     name={`${review.user.firstName} ${review.user.lastName}`}
                                     date={convertDate(review.createdAt)}
                                     stars={review.rating}

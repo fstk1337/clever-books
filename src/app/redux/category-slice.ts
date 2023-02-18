@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import { api } from 'src/api';
-import { CategoryModel } from 'src/models/category.model';
+import { AllBooksCategory, CategoryModel } from 'src/models/category.model';
 
 import { RootState } from '../store';
 
@@ -54,7 +54,10 @@ export const categorySlice = createSlice({
             ))
             .addCase(fetchCategories.fulfilled, (_, action) => (
                 {
-                    categories: action.payload,
+                    categories: [
+                        AllBooksCategory,
+                        ...action.payload
+                    ],
                     status: 'success',
                     error: null
                 }
@@ -81,6 +84,10 @@ export const getCategoryByPath = (path: string) => (
 
 export const isCategoriesLoading = () => (
     createSelector(getCategoryState, (state) => state.status === 'loading')
+)
+
+export const isCategoriesError = () => (
+    createSelector(getCategoryState, (state) => state.status === 'error')
 )
 
 export const categoryReducer = categorySlice.reducer;

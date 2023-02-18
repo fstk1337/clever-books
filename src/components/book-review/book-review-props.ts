@@ -1,5 +1,5 @@
 export interface BookReviewProps {
-    avatar: string;
+    avatar: string | null;
     name: string;
     date: string;
     stars: number;

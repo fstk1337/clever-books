@@ -30,7 +30,7 @@ export const BookImgSlider: FC<BookImgSliderProps> = ({images, slidesPerView, ac
     >
         {images.map((image, index) => (
             <SwiperSlide data-test-id={index === 0 ? 'slide-big' : 'slide-mini'} className={classNames('swiper-slide-visible', active === image.url ? 'active' : undefined)} key={image.url} onClick={() => handler(image.url)}>
-                <img src={image.url} alt='' />
+                <img src={`https://strapi.cleverland.by${image.url}`} alt='' />
             </SwiperSlide>
         ))}
     </Swiper>

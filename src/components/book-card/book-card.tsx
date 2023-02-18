@@ -25,7 +25,7 @@ export const BookCard: FC<BookCardProps> = (props) => {
     }
  
     return (
-        <Link to={`${props.route}/${props.id}`} className='book-card' data-test-id='card'>
+        <Link to={`${props.id}`} className='book-card' data-test-id='card'>
             <div className="card-wrapper">
                 <div className='card-info-wrapper'>
                     <img className='card-image' src={props.image} alt='' />

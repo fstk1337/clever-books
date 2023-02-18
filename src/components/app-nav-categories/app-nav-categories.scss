@@ -31,6 +31,18 @@
             color: $main-dark;
         }
     }
+    &:first-child {
+        .genre {
+            font-family: 'Montserrat';
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 28px;
+            letter-spacing: 0.1px;
+        }
+        .quantity {
+            display: none;
+        }
+    }
 }
 
 .all-books {

@@ -25,7 +25,7 @@ export const BookItem: FC<BookItemProps> = (props) =>  {
     }
 
     return (
-        <Link to={`${props.route}/${props.id}`} className='book-item' data-test-id='card'>
+        <Link to={`${props.id}`} className='book-item' data-test-id='card'>
             <div className="item-wrapper">
                 <img className='item-image' src={props.image} alt='' />
                 <div className="item-text">

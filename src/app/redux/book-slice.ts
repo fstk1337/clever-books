@@ -39,7 +39,7 @@ export const fetchBooks = createAsyncThunk<BookModel[], undefined, { rejectValue
     }
 );
 
-export const bookSlice = createSlice({
+export const booksSlice = createSlice({
     name: 'books',
     initialState,
     reducers: {},
@@ -79,4 +79,8 @@ export const isBooksLoading = () => (
     createSelector(getBookState, (state) => state.status === 'loading')
 )
 
-export const bookReducer = bookSlice.reducer;
+export const isBooksError = () => (
+    createSelector(getBookState, (state) => state.status === 'error')
+)
+
+export const booksReducer = booksSlice.reducer;

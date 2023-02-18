@@ -85,4 +85,8 @@ export const isOneBookLoading = () => (
     createSelector(getBookState, (state) => state.status === 'loading')
 )
 
+export const isOneBookError = () => (
+    createSelector(getBookState, (state) => state.status === 'error')
+)
+
 export const oneBookReducer = oneBookSlice.reducer;

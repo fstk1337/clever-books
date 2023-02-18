@@ -40,7 +40,6 @@ export const BookList: FC<BookListProps> = ({listStyle}) => {
                     id={book.id}
                     image={book.image ? `https://strapi.cleverland.by${book.image.url}` : undefined}
                     stars={Math.trunc(book.rating)}
-                    route={`/books/${categories.find(category => category.name === book.categories[0])?.path}`}
                     title={book.title}
                     author={book.authors[0]}
                     free={book.booking ? !book.booking.order : true}
@@ -53,7 +52,6 @@ export const BookList: FC<BookListProps> = ({listStyle}) => {
                     id={book.id}
                     image={book.image ? `https://strapi.cleverland.by${book.image.url}` : undefined}
                     stars={book.rating}
-                    route={`/books/${categories.find(category => category.name === book.categories[0])?.path}`}
                     title={book.title}
                     author={book.authors[0]}
                     free={book.booking ? !book.booking.order : true}

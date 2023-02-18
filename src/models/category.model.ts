@@ -4,6 +4,12 @@ export interface CategoryModel {
     id: number;
 }
 
+export const AllBooksCategory: CategoryModel = {
+    name: 'Все книги',
+    path: 'all',
+    id: 0
+}
+
 export const EmptyCategory: CategoryModel = {
     name: '',
     path: '',

@@ -26,19 +26,9 @@ export const AppNavCategories: FC<AppNavCategoriesProps> = ({show, type}) => {
     return (
         <div className={classNames('categories-wrapper', show ? 'show' : '')}>
             <ul className='categories-list'>
-                <li
-                    className={classNames('category', 'all-books', location.pathname === '/books/all' ? 'active' : '')}
-                >
-                    <Link
-                        data-test-id={type === 'main' ? 'navigation-books' : 'burger-books'}
-                        to='/books/all'
-                        onClick={type === 'adaptive' ? () => dispatch(disableShow()) : undefined}
-                    >
-                        Все книги
-                    </Link>
-                </li>
                 {categories.map(category =>
                     <li
+                        data-test-id={category.id === 0 ? type === 'main' ? 'navigation-books' : 'burger-books' : undefined}
                         key={category.id}
                         className={classNames('category', location.pathname === `/books/${category.path}` ? 'active' : '')}
                     >
