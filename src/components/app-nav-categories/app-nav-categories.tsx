@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import { getAllBooks } from 'src/app/redux/book-slice';
 import { getAllCategories } from 'src/app/redux/category-slice';
-import { BookModel } from 'src/models';
+import { countBooksInCategory } from 'src/utils/count-books';
 
 import { disableShowExpanded } from '../../app/redux/nav-slice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -11,10 +11,6 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AppNavCategoriesProps } from './app-nav-categories-props';
 
 import './app-nav-categories.scss';
-
-const countBooksInCategory = (categoryName: string, bookList: BookModel[]) => (
-    bookList.filter(book => book.categories.find(category => category === categoryName)).length
-)
 
 export const AppNavCategories: FC<AppNavCategoriesProps> = ({show, type}) => {
     const categories = useAppSelector(getAllCategories());

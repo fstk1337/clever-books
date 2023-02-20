@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { getButtonOptions } from 'src/utils/button-options';
 
 import { AppButton } from '../app-button/app-button';
 import { BookStars } from '../book-stars/book-stars';
@@ -8,21 +9,8 @@ import { BookCardProps } from './book-card-props';
 
 import './book-card.scss';
 
-const convertDate = (dateString: string): string => {
-    const date = new Date(dateString);
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    
-    return `${date.getDate()}.${month}`;
-}
-
 export const BookCard: FC<BookCardProps> = (props) => {
-    let buttonText = 'Забронировать';
-    let buttonStyle = 'active';
-
-    if (!props.free) {
-        buttonText = props.busyUntil ? `занята до ${convertDate(props.busyUntil)}` : 'Забронирована';
-        buttonStyle = props.busyUntil ? 'busy' : 'booked';
-    }
+    const { buttonText, buttonStyle } = getButtonOptions(props.free, props.busyUntil);
  
     return (
         <Link to={`${props.id}`} className='book-card' data-test-id='card'>

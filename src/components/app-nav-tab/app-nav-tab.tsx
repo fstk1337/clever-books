@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { isBooksError,isBooksLoading } from 'src/app/redux/book-slice';
 import { isCategoriesError,isCategoriesLoading } from 'src/app/redux/category-slice';
+import { getDataTestId } from 'src/utils/app-nav-tab-test';
 
 import { disableShow, disableShowCats, toggleShowCats } from '../../app/redux/nav-slice';
 import { ReactComponent as ArrowIcon } from '../../assets/icon/arrowdown.svg';
@@ -26,29 +27,10 @@ export const AppNavTab: FC<AppNavTabProps> = (props) => {
     const showCats = useAppSelector(state => state.nav.showCats);
     const dispatch = useAppDispatch();
 
-    const getDataTestId = () => {
-        if (props.route === '/rules') {
-            if (props.view === 'main') {
-                return 'navigation-terms';
-            }
-
-            return 'burger-terms';
-        }
-        if (props.route === '/public-offer') {
-            if (props.view === 'main') {
-                return 'navigation-contract';
-            }
-
-            return 'burger-contract';
-        }
-
-        return undefined;
-    }
-
     return (
         <li
             className='nav-tab'
-            data-test-id={getDataTestId()}
+            data-test-id={getDataTestId(props.route, props.view)}
         >
             {props.type === 'link' &&
                 <Link

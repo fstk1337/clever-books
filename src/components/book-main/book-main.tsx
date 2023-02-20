@@ -1,5 +1,8 @@
 import React, { FC, useState } from 'react';
 import classNames from 'classnames';
+import { getButtonOptions } from 'src/utils/button-options';
+import { convertDateToDDMM, convertDateToDDMMMMMYYYY } from 'src/utils/convert-date';
+import { getSlidesPerView } from 'src/utils/slides-count';
 
 import { ReactComponent as HideReviewsIcon } from '../../assets/icon/arrowup.svg';
 import { useWindowWidth } from '../../hooks';
@@ -12,40 +15,9 @@ import { BookMainProps } from './book-main-props';
 
 import './book-main.scss';
 
-const getButtonOptions = (free: boolean, busyUntil: string | undefined) => {
-    let buttonText = 'Забронировать';
-    let buttonStyle = 'active';
-
-    if (!free) {
-        buttonText = busyUntil ? `занята до ${busyUntil}` : 'Забронирована';
-        buttonStyle = busyUntil ? 'busy' : 'booked';
-    }
-
-    return { buttonText, buttonStyle };
-}
-
-const getSlidesPerView = (imagesCount: number, screen: number) => {
-    const width = window.innerWidth;
-    const slidesCount = 5;
-
-    if (width < screen || imagesCount <= 1) {
-        return 1;
-    }
-
-    return slidesCount;
-}
-
-const convertDate = (dateString: string): string => {
-    const date = new Date(dateString);
-    const monthNames = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-    const month = monthNames[date.getMonth()];
-    
-    return `${date.getDate()} ${month} ${date.getFullYear()}`;
-}
-
 export const BookMain: FC<BookMainProps> = ({book}) => {
     const [activeImage, setActiveImage] = useState<string>(book.images ? book.images[0].url : '');
-    const { buttonText, buttonStyle } = getButtonOptions(book.booking? book.booking.order : true, book.booking?.dateOrder);
+    const { buttonText, buttonStyle } = getButtonOptions(book.booking? !book.booking.order : true, convertDateToDDMM(book.booking?.dateOrder));
     const revsCount = book.comments? book.comments.length : 0;
     const [showReviews, setShowReviews] = useState(true);
 
@@ -193,7 +165,7 @@ export const BookMain: FC<BookMainProps> = ({book}) => {
                                     key={review.id}
                                     avatar={review.user.avatarUrl}
                                     name={`${review.user.firstName} ${review.user.lastName}`}
-                                    date={convertDate(review.createdAt)}
+                                    date={convertDateToDDMMMMMYYYY(review.createdAt)}
                                     stars={review.rating}
                                     text={review.text}
                                 />

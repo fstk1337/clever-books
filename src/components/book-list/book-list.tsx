@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import { fetchBooks, getAllBooks } from 'src/app/redux/book-slice';
 import { fetchCategories } from 'src/app/redux/category-slice';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
+import { convertDateToDDMM } from 'src/utils/convert-date';
+import { getRouteLastWord } from 'src/utils/route-util';
 
 import { BookCard } from '../book-card/book-card';
 import { BookItem } from '../book-item/book-item';
@@ -11,10 +13,6 @@ import { BookItem } from '../book-item/book-item';
 import { BookListProps } from './book-list-props';
 
 import './book-list.scss';
-
-const getRouteLastWord = (route: string) => (
-    route.split('/').at(-1)
-);
 
 export const BookList: FC<BookListProps> = ({listStyle}) => {
     const dispatch = useAppDispatch();
@@ -43,7 +41,7 @@ export const BookList: FC<BookListProps> = ({listStyle}) => {
                     title={book.title}
                     author={book.authors[0]}
                     free={book.booking ? !book.booking.order : true}
-                    busyUntil={book.booking?.dateOrder}
+                    busyUntil={convertDateToDDMM(book.booking?.dateOrder)}
                 />
             )} 
             {listStyle === 'list' && booksToShow.map(book => 
@@ -55,7 +53,7 @@ export const BookList: FC<BookListProps> = ({listStyle}) => {
                     title={book.title}
                     author={book.authors[0]}
                     free={book.booking ? !book.booking.order : true}
-                    busyUntil={book.booking?.dateOrder}
+                    busyUntil={convertDateToDDMM(book.booking?.dateOrder)}
                 />
             )}
         </div>
