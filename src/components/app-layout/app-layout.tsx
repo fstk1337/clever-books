@@ -42,7 +42,7 @@ export const AppLayout = () => {
             <Outlet />
             <AppFooter />
             <AppNavAdaptive />
-            {isLoading && <AppFetchLoader />}
+            {isLoading && !isError &&<AppFetchLoader />}
             {isError && <AppFetchError />}
         </React.Fragment>
     )
