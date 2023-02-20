@@ -5,7 +5,7 @@ import { getAllBooks } from 'src/app/redux/book-slice';
 import { getAllCategories } from 'src/app/redux/category-slice';
 import { BookModel } from 'src/models';
 
-import { disableShow } from '../../app/redux/nav-slice';
+import { disableShowExpanded } from '../../app/redux/nav-slice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
 import { AppNavCategoriesProps } from './app-nav-categories-props';
@@ -34,7 +34,7 @@ export const AppNavCategories: FC<AppNavCategoriesProps> = ({show, type}) => {
                     >
                         <Link
                             to={`/books/${category.path}`}
-                            onClick={type === 'adaptive' ? () => dispatch(disableShow()) : undefined}
+                            onClick={type === 'adaptive' ? () => dispatch(disableShowExpanded()) : undefined}
                         >
                             <span className='genre'>{category.name}</span>
                         </Link>

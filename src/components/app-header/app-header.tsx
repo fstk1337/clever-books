@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
-import { disableShow, enableShow } from '../../app/redux/nav-slice';
+import { disableShowExpanded, enableShowCollapsed } from '../../app/redux/nav-slice';
 import { ReactComponent as Burger } from '../../assets/icon/burger.svg';
 import logo from '../../assets/img/logo.png';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -13,7 +13,7 @@ export const AppHeader = () => {
     const dispatch = useAppDispatch();
 
     const toggleShow = () => {
-        dispatch(show ? disableShow() : enableShow());
+        dispatch(show ? disableShowExpanded() : enableShowCollapsed());
     }
 
 

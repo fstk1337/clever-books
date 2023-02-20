@@ -1,0 +1,90 @@
+.error-wrapper {
+    display: block;
+    position: absolute;
+    top: 56px;
+    width: 280px;
+    background: #FEEBEA;
+    border: 1.5px solid #F42C4F;
+    background: #FEEBEA;
+    border-radius: 5px;
+    z-index: 100;
+    @media screen and (min-width: 768px) {
+        top: 62px;
+        width: 640px;
+    }
+    @media screen and (min-width: 1200px) {
+        top: 64px;
+        width: 1110px;
+    }
+    &.hidden {
+        display: none;
+    }
+}
+
+.fetch-error {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    column-gap: 10px;
+    padding: 12px 16px;
+    @media screen and (min-width: 768px) {
+        padding: 24px 16px;
+    }
+    @media screen and (min-width: 1200px) {
+        justify-content: space-between;
+        align-items: center;
+        padding: 24px 32px;
+    }
+}
+
+.error-message {
+    display: flex;
+    flex-direction: row;
+    column-gap: 12px;
+    img {
+        width: 24px;
+        height: 24px;
+    }
+    @media screen and (min-width: 768px) {
+        align-items: center;
+    }
+    @media screen and (min-width: 1200px) {
+        column-gap: 24px;
+    }
+}
+
+.error-text {
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.1px;
+    color: #363636;
+    @media screen and (min-width: 1200px) {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+.msg-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+    background-color: inherit;
+    @media screen and (min-width: 1200px) {
+        width: 24px;
+        height: 24px;
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
+    cursor: pointer;
+    border: 0;
+}

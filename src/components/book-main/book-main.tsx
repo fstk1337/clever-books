@@ -44,7 +44,7 @@ const convertDate = (dateString: string): string => {
 }
 
 export const BookMain: FC<BookMainProps> = ({book}) => {
-    const [activeImage, setActiveImage] = useState<string>(book.images[0].url);
+    const [activeImage, setActiveImage] = useState<string>(book.images ? book.images[0].url : '');
     const { buttonText, buttonStyle } = getButtonOptions(book.booking? book.booking.order : true, book.booking?.dateOrder);
     const revsCount = book.comments? book.comments.length : 0;
     const [showReviews, setShowReviews] = useState(true);

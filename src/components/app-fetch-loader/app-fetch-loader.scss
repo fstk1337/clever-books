@@ -13,13 +13,31 @@
     position: fixed;
     justify-content: center;
     align-items: center;
-    width: 150px;
-    height: 150px;
-    transform: translate(calc(50vw - 75px), calc(50vh - 75px));
+    width: 48px;
+    height: 48px;
+    transform: translate(calc(50vw - 24px), calc(50vh - 24px));
     svg {
-        width: 68.75px;
-        height: 68.75px;
+        width: 22px;
+        height: 22px;
         animation: spin 1s linear infinite;
+    }
+    @media screen and (min-width: 600px) {  
+        width: 96px;
+        height: 96px;
+        transform: translate(calc(50vw - 48px), calc(50vh - 48px));
+        svg {
+            width: 44px;
+            height: 44px;
+        }
+    }
+    @media screen and (min-width: 1100px) {
+        width: 150px;
+        height: 150px;
+        transform: translate(calc(50vw - 75px), calc(50vh - 75px));
+        svg {
+            width: 68.75px;
+            height: 68.75px;
+        }
     }
 }
 

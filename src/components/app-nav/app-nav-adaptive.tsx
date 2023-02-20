@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 
-import { disableShow } from '../../app/redux/nav-slice';
+import { disableShowExpanded } from '../../app/redux/nav-slice';
 import { navTabs } from '../../constants/nav-tabs';
 import { useAppDispatch, useAppSelector, useClickOutside } from '../../hooks';
 import { AppNavTab } from '../app-nav-tab/app-nav-tab';
@@ -15,7 +15,7 @@ export const AppNavAdaptive = () => {
     const dispatch = useAppDispatch();
     const navRef = useClickOutside(() => {
         if (show) {
-            dispatch(disableShow());
+            dispatch(disableShowExpanded());
         }
     });
 
@@ -45,7 +45,7 @@ export const AppNavAdaptive = () => {
                     <button
                         className='tab-wrapper'
                         type='button'
-                        onClick={() => dispatch(disableShow())}
+                        onClick={() => dispatch(disableShowExpanded())}
                     >
                         <div className='link-wrapper'> 
                             <div className='nav-link'>
@@ -58,7 +58,7 @@ export const AppNavAdaptive = () => {
                     <button
                         className='tab-wrapper'
                         type='button'
-                        onClick={() => dispatch(disableShow())}
+                        onClick={() => dispatch(disableShowExpanded())}
                     >
                         <div className='link-wrapper'> 
                             <div className='nav-link'>

@@ -1,6 +1,9 @@
 import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
+import { isBooksError,isBooksLoading } from 'src/app/redux/book-slice';
+import { isCategoriesError,isCategoriesLoading } from 'src/app/redux/category-slice';
 
 import { disableShow, disableShowCats, toggleShowCats } from '../../app/redux/nav-slice';
 import { ReactComponent as ArrowIcon } from '../../assets/icon/arrowdown.svg';
@@ -12,6 +15,14 @@ import { AppNavTabProps } from './app-nav-tab-props';
 import './app-nav-tab.scss';
 
 export const AppNavTab: FC<AppNavTabProps> = (props) => {
+    const booksLoading = useSelector(isBooksLoading());
+    const categoriesLoading = useSelector(isCategoriesLoading());
+    const booksError = useSelector(isBooksError());
+    const categoriesError = useSelector(isCategoriesError());
+    const isLoading = booksLoading || categoriesLoading;
+    const isError = booksError || categoriesError;
+    const success = !isLoading && !isError;
+
     const showCats = useAppSelector(state => state.nav.showCats);
     const dispatch = useAppDispatch();
 
@@ -62,12 +73,14 @@ export const AppNavTab: FC<AppNavTabProps> = (props) => {
                             <div className='nav-link'>
                                 { props.text }
                             </div>
-                            <div className={classNames('dropdown-btn', showCats ? 'down' : '')}>
-                                <ArrowIcon />
-                            </div>
+                            {success &&
+                                <div className={classNames('dropdown-btn', showCats ? 'down' : '')}>
+                                    <ArrowIcon />
+                                </div>
+                            }
                         </div>
                     </Link>
-                    <AppNavCategories show={showCats} type={props.view} />
+                    <AppNavCategories show={success && showCats} type={props.view} />
                 </React.Fragment>
             }
         </li>

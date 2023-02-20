@@ -20,10 +20,22 @@ export const navSlice = createSlice({
         showCats: state.showCats
       }
     ),
+    enableShowCollapsed: () => (
+      {
+        show: true,
+        showCats: false
+      }
+    ),
     disableShow: (state) => (
       {
         show: false,
         showCats: state.show ? false : state.showCats
+      }
+    ),
+    disableShowExpanded: (state) => (
+      {
+        show: false,
+        showCats: state.showCats
       }
     ),
     toggleShowCats: (state) => (
@@ -41,6 +53,6 @@ export const navSlice = createSlice({
   }
 })
 
-export const { enableShow, disableShow, toggleShowCats, disableShowCats } = navSlice.actions;
+export const { enableShow, enableShowCollapsed, disableShow, disableShowExpanded, toggleShowCats, disableShowCats } = navSlice.actions;
 
 export const navReducer = navSlice.reducer;

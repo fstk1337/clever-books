@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import { fetchCategories, getCategoryByPath } from 'src/app/redux/category-slice';
-import { fetchOneBook, getBookDetails } from 'src/app/redux/one-book-slice';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { fetchCategories } from 'src/app/redux/category-slice';
+import { fetchOneBook, getBookDetails, isOneBookError, isOneBookLoading } from 'src/app/redux/one-book-slice';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
-import { EmptyCategory } from 'src/models/category.model';
 import { EmptyBook } from 'src/models/one-book.model';
 
 import { BookHeader } from '../../components/book-header/book-header';
@@ -14,9 +14,10 @@ import './book-page.scss';
 export const BookPage = () => {
     const { bookId } = useParams();
     const dispatch = useAppDispatch();
-    const location = useLocation();
     const currentBook = useAppSelector(getBookDetails(bookId || '0')) || EmptyBook;
-    const currentCategory = useAppSelector(getCategoryByPath(location.pathname.split('/')[2]));
+
+    const loading = useSelector(isOneBookLoading());
+    const error = useSelector(isOneBookError());
     
 
     useEffect(() => {
@@ -27,12 +28,13 @@ export const BookPage = () => {
     return (
         <div className='book-wrapper'>
             <BookHeader
-                category={currentCategory || EmptyCategory}
                 title={currentBook.title}
             />
-            <BookMain
-                book={currentBook}
-            />
+            { !loading && !error &&
+                <BookMain
+                    book={currentBook}
+                />
+            }
         </div>
     )
 };

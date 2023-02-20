@@ -10,4 +10,7 @@
     @media (min-width: 769px) {
         row-gap: 32px;
     }
+    &.hidden {
+        display: none;
+    }
 }
