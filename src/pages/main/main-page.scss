@@ -1,0 +1,16 @@
+.content-wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-end;
+    row-gap: 16px;
+    @media (min-width: 321px) {
+        row-gap: 24px;
+    }
+    @media (min-width: 769px) {
+        row-gap: 32px;
+    }
+    &.hidden {
+        display: none;
+    }
+}

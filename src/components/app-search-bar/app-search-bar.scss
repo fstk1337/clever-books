@@ -1,0 +1,200 @@
+.searchbar-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    padding: 3px 0;
+    &.wide {
+        width: 100%;
+    }
+}
+
+.search-field {
+    display: flex;
+    align-items: center;
+    max-width: 32px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18), 0px 1px 5px rgba(191, 196, 201, 0.24);
+    border-radius: 599px;
+    margin-right: 16px;
+    //padding: 8px;
+    &.wide {
+        min-width: 100%;
+        padding: 7px 16px;
+        margin-right: 0;
+        @media screen and (min-width: 400px) {
+            padding: 10px 16px;
+        }
+        @media screen and (min-width: 768px) {
+        }
+    }
+    @media screen and (min-width: 400px) {
+        //padding: 10px;
+        min-width: 38px;
+    }
+    @media screen and (min-width: 600px) {
+        max-width: 350px;
+        min-width: 250px;
+        width: calc(274px/768px*100vw);
+    }
+}
+
+.search-button {
+    border: 0;
+    background-color: #fff;
+    width: 32px;
+    height: 32px;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 599px;
+    &.hidden {
+        display: none;
+    }
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+    margin-right: 0;
+    @media screen and (min-width: 400px) {
+        padding: 11px;
+        width: 38px;
+        height: 38px;
+    }
+    @media screen and (min-width: 768px) {
+        margin-right: 8px;
+    }
+}
+
+.search-text {
+    display: none;
+    @media screen and (min-width: 600px) {
+        display: inline;
+        border: 0;
+        width: 100%;
+        font-family: 'Montserrat';
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        color: #A7A7A7;
+    }
+    &:focus {
+        outline: none;
+    }
+    &.wide {
+        display: flex;
+        border: 0;
+        width: 100%;
+        height: 18px;
+        font-family: 'Montserrat';
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        color: #A7A7A7;
+        @media screen and (min-width: 400px) {
+            font-size: 14px;
+        }
+    }
+}
+
+.cancel-search-button {
+    border: 0;
+    background-color: #fff;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    &.hidden {
+        display: none;
+    }
+}
+
+.sort-btn {
+    display: flex;
+    align-items: center;
+    &.hidden {
+        display: none;
+    }
+    button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        padding: 8px;
+        gap: 8px;
+        background: #fff;
+        min-width: 32px;
+        height: 32px;
+        border: 0;
+        border-radius: 599px;
+        box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18), 0px 1px 5px rgba(191, 196, 201, 0.24);
+        font-family: 'Montserrat';
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        color: #A7A7A7;
+        padding: 8px;
+        @media screen and (min-width: 321px) {
+            padding: 8px;
+        }
+        @media screen and (min-width: 400px) {
+            padding: 11px;
+            height: 38px;
+        }
+    }
+    .sort-text {
+        display: none;
+        @media screen and (min-width: 768px) {
+            display: inline;
+        }
+    }
+}
+
+.view-toggler {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 16px;
+    padding: 3px 0;
+    &.hidden {
+        display: none;
+    }
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        padding: 8px;
+        border-radius: 19px;
+        cursor: pointer;
+        background-color: #fff;
+        filter: drop-shadow(0px 2px 4px rgba(191, 196, 201, 0.2)) drop-shadow(0px 3px 4px rgba(191, 196, 201, 0.18)) drop-shadow(0px 1px 5px rgba(191, 196, 201, 0.24));
+        svg {
+            width: 16px;
+            height: 16px;
+            fill: #A7A7A7;
+            @media (min-width: 400px) {
+                width: 19px;
+                height: 19px;
+            }
+        }
+        &.active {
+            background: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+            svg {
+                fill: #fff;
+            }
+        }
+        @media screen and (min-width: 400px) {
+            padding: 9.5px;
+        }
+    }
+}
+
+

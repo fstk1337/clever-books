@@ -1,0 +1,67 @@
+@import '../../scss/variables';
+
+.categories-wrapper {
+    transition: display .3s ease;
+    display: none;
+    &.show {
+        display: flex;
+    }
+}
+
+.categories-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    padding-left: 20px;
+    padding-top: 16px;
+}
+
+.category {
+    cursor: pointer;
+    &.active { 
+        a {
+            cursor: default;
+            background: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+        & .quantity {
+            color: $main-dark;
+        }
+    }
+    &:first-child {
+        .genre {
+            font-family: 'Montserrat';
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 28px;
+            letter-spacing: 0.1px;
+        }
+        .quantity {
+            display: none;
+        }
+    }
+}
+
+.all-books {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.1px;
+}
+
+.genre {
+    font-family: 'Montserrat';
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.1px;
+    margin-right: 6px;
+    color: #363636;
+}
+
+.quantity {
+    color: #A7A7A7;
+}

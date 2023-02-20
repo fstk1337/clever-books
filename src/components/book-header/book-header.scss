@@ -1,0 +1,48 @@
+.book-header-wrapper {
+    display: flex;
+    column-gap: 6px;
+    background: #F9F9FA;
+    width: 100%;
+}
+
+.book-header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 16px;
+    @media screen and (min-width: 400px) {
+        padding: 20px 33px;
+    }
+    @media screen and (min-width: 500px) {
+        padding: 20px 42px;
+    }
+    @media screen and (min-width: 600px) {
+        padding: 20px 64px;
+    }
+    @media screen and (min-width: 768px) {
+        padding: 26px 64px;
+    }
+    @media screen and (min-width: 1110px) {
+        padding: 20px 96px;
+    }
+    @media screen and (min-width: 1440px) {
+        padding: 20px 165px;
+    }
+}
+
+.book-header-text {
+    width: 100%;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.2px;
+    color: #A7A7A7;
+    margin-bottom: -2px;
+    @media screen and (min-width: 600px) {
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        margin-bottom: 0;
+    }
+}
