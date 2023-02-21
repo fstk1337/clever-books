@@ -131,7 +131,7 @@ export const BookMain: FC<BookMainProps> = ({book}) => {
                             </ul>
                             <ul>
                                 <li className='detail-data'>
-                                    {book.categories[0]}
+                                    {book.categories.join(', ')}
                                 </li>
                                 <li className='detail-data'>
                                     {book.weight}

@@ -1,3 +1,3 @@
 export const getRouteLastWord = (route: string) => (
-    route.split('/').at(-1)
+    route.split('/').at(-1) || ''
 );

@@ -2,9 +2,10 @@ import { FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import { fetchBooks, getAllBooks } from 'src/app/redux/book-slice';
-import { fetchCategories } from 'src/app/redux/category-slice';
+import { fetchCategories, getCategoryByPath } from 'src/app/redux/category-slice';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { convertDateToDDMM } from 'src/utils/convert-date';
+import { filterBooksByCategory } from 'src/utils/filter-books';
 import { getRouteLastWord } from 'src/utils/route-util';
 
 import { BookCard } from '../book-card/book-card';
@@ -18,20 +19,22 @@ export const BookList: FC<BookListProps> = ({listStyle}) => {
     const dispatch = useAppDispatch();
     const location = useLocation().pathname;
     
-    let booksToShow = useAppSelector(getAllBooks());
-    const categories = useAppSelector((state) => state.category.categories);
+    const category = useAppSelector(getCategoryByPath(getRouteLastWord(location)));
+    const books = useAppSelector(getAllBooks());
+    const booksToShow = location === '/books/all' ? books : filterBooksByCategory(books, category?.name);
 
     useEffect(() => {
         dispatch(fetchCategories());
         dispatch(fetchBooks());
     }, [dispatch]);
 
-    if (location !== '/books/all') {
-        booksToShow = booksToShow.filter(book => categories.find(category => category.name === book.categories[0])?.path === getRouteLastWord(location));
-    }
-
     return (
         <div className={classNames(listStyle === 'tile' ? 'tile-container' : 'list-container')}>
+            {booksToShow.length === 0 && 
+                <div className='no-books-message'>
+                    <span>В этой категории книг </span><span>ещё нет</span>
+                </div>
+            }
             {listStyle === 'tile' && booksToShow.map(book => 
                 <BookCard
                     key={book.id}
