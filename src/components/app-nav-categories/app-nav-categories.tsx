@@ -24,17 +24,22 @@ export const AppNavCategories: FC<AppNavCategoriesProps> = ({show, type}) => {
             <ul className='categories-list'>
                 {categories.map(category =>
                     <li
-                        data-test-id={category.id === 0 ? type === 'main' ? 'navigation-books' : 'burger-books' : undefined}
                         key={category.id}
                         className={classNames('category', location.pathname === `/books/${category.path}` ? 'active' : '')}
                     >
                         <Link
+                            data-test-id={category.id === 0 ? type === 'main' ? 'navigation-books' : 'burger-books' : type === 'main' ? `navigation-${category.path}` : `burger-${category.path}`}
                             to={`/books/${category.path}`}
                             onClick={type === 'adaptive' ? () => dispatch(disableShowExpanded()) : undefined}
                         >
                             <span className='genre'>{category.name}</span>
                         </Link>
-                        <span className='quantity'>{countBooksInCategory(category.name, books)}</span>
+                        <span
+                            data-test-id={type === 'main' ? `navigation-book-count-for-${category.path}` : `burger-book-count-for-${category.path}`}
+                            className='quantity'
+                        >
+                            {countBooksInCategory(category.name, books)}
+                        </span>
                     </li> 
                 )}
             </ul>

@@ -30,7 +30,7 @@ export const fetchBooks = createAsyncThunk<BookModel[], undefined, { rejectValue
       condition: (_, { getState }) => {
         const { books } = getState() as RootState;
 
-        if (books.status === 'success' || books.status === 'loading') {
+        if (books.status === 'loading') {
           return false;
         }
 

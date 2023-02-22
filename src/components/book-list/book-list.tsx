@@ -21,7 +21,9 @@ export const BookList: FC<BookListProps> = ({listStyle}) => {
     
     const category = useAppSelector(getCategoryByPath(getRouteLastWord(location)));
     const books = useAppSelector(getAllBooks());
-    const booksToShow = location === '/books/all' ? books : filterBooksByCategory(books, category?.name);
+    let booksToShow = location === '/books/all' ? books : filterBooksByCategory(books, category?.name);
+
+    booksToShow = [...booksToShow].sort((book1, book2) => book2.rating - book1.rating);
 
     useEffect(() => {
         dispatch(fetchCategories());
@@ -31,7 +33,7 @@ export const BookList: FC<BookListProps> = ({listStyle}) => {
     return (
         <div className={classNames(listStyle === 'tile' ? 'tile-container' : 'list-container')}>
             {booksToShow.length === 0 && 
-                <div className='no-books-message'>
+                <div className='no-books-message' data-test-id='empty-category'>
                     <span>В этой категории книг </span><span>ещё нет</span>
                 </div>
             }

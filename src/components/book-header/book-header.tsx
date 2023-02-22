@@ -1,5 +1,6 @@
 import { FC, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { fetchBooks } from 'src/app/redux/book-slice';
 import { fetchCategories, getAllCategories } from 'src/app/redux/category-slice';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
 
@@ -22,8 +23,15 @@ export const BookHeader: FC<BookHeaderProps> = ({title}) => {
         <div className='book-header-wrapper'>
             <div className='book-header'>
                 <div className='book-header-text'>
-                    <Link to={`/books/${path}`}>{name}</Link>
-                    {` / ${title}`}
+                    <Link
+                        data-test-id='breadcrumbs-link'
+                        to={`/books/${path}`}
+                        onClick={() => dispatch(fetchBooks())}
+                    >
+                        {name}
+                    </Link>
+                    {' / '}
+                    <span data-test-id='book-name'>{title}</span>
                 </div>
             </div>
         </div>
