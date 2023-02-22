@@ -72,6 +72,7 @@
 
 .search-text {
     display: none;
+    caret-color: #F83600;
     @media screen and (min-width: 600px) {
         display: inline;
         border: 0;

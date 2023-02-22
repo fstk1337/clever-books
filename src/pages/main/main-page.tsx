@@ -14,6 +14,8 @@ export interface BooksView {
 }
 
 export const MainPage = () => {
+  const [searchText, setSearchText] = useState('');
+  const [searchMode, setSearchMode] = useState(false);
   const [sortDesc, setSortDesc] = useState(true);
   const [viewStyle, setViewStyle] = useState<BooksView>( {style: 'tile'} );
   const booksLoading = useSelector(isBooksLoading());
@@ -28,10 +30,22 @@ export const MainPage = () => {
     setViewStyle(view);
   }
 
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(event.target.value);
+  }
+
   return (
     <div className={classNames('content-wrapper', isLoading || isError ? 'hidden' : undefined)}>
-      <AppSearchBar bookView={viewStyle} desc={sortDesc} changeView={changeView} toggleSort={() => setSortDesc(!sortDesc)} />
-      <BookList listStyle={viewStyle.style} sortDesc={sortDesc} />
+      <AppSearchBar
+        bookView={viewStyle}
+        desc={sortDesc}
+        handleInput={(event: React.ChangeEvent<HTMLInputElement>) => handleSearch(event)}
+        searchMode={searchMode}
+        setSearchMode={setSearchMode}
+        changeView={changeView}
+        toggleSort={() => setSortDesc(!sortDesc)}
+      />
+      <BookList listStyle={viewStyle.style} sortDesc={sortDesc} searchText={searchText} />
     </div>
   );
 }

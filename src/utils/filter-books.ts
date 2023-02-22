@@ -9,3 +9,7 @@ export const filterBooksByCategory = (books: BookModel[], category: string | und
         book.categories.find(cat => cat === category)
     );
 }
+
+export const filterBooksByPattern = (books: BookModel[], pattern: string) => (
+    books.filter(book => book.title.toLowerCase().includes(pattern.toLowerCase()))
+)
