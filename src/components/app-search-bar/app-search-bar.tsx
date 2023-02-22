@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { ReactComponent as CrossIcon } from '../../assets/icon/cross.svg';
 import { ReactComponent as ListIcon } from '../../assets/icon/list.svg';
 import { ReactComponent as SearchIcon } from '../../assets/icon/search.svg';
-import sortIcon from '../../assets/icon/sort.svg';
+import { ReactComponent as SortIcon} from '../../assets/icon/sort.svg';
 import { ReactComponent as TileIcon } from '../../assets/icon/tile.svg';
 import { useWindowWidth } from '../../hooks';
 
@@ -44,8 +44,12 @@ export const AppSearchBar: FC<AppSearchBarProps> = (props) => {
                     </button>
                 </div>
                 <div className={classNames('sort-btn', searchMode ? 'hidden' : undefined)}>
-                    <button type='button'>
-                        <img className='sort-icon' src={sortIcon} alt='sort' />
+                    <button
+                        data-test-id='sort-rating-button'
+                        type='button'
+                        onClick={props.toggleSort}
+                    >
+                        <SortIcon className={props.desc ? undefined : 'asc'} />
                         <span className='sort-text'>По рейтингу</span>
                     </button>
                 </div>
@@ -55,7 +59,7 @@ export const AppSearchBar: FC<AppSearchBarProps> = (props) => {
                     className={classNames(props.bookView.style === 'tile' ? 'active' : '')}
                     type='button'
                     data-test-id='button-menu-view-window'
-                    onClick={() => props.handleClick({style: 'tile'})}
+                    onClick={() => props.changeView({style: 'tile'})}
                 >
                     <TileIcon />
                 </button>
@@ -63,7 +67,7 @@ export const AppSearchBar: FC<AppSearchBarProps> = (props) => {
                     className={classNames(props.bookView.style === 'list' ? 'active' : '')}
                     type='button'
                     data-test-id='button-menu-view-list'
-                    onClick={() => props.handleClick({style: 'list'})}
+                    onClick={() => props.changeView({style: 'list'})}
                 >
                     <ListIcon />
                 </button>

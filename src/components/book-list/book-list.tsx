@@ -15,7 +15,7 @@ import { BookListProps } from './book-list-props';
 
 import './book-list.scss';
 
-export const BookList: FC<BookListProps> = ({listStyle}) => {
+export const BookList: FC<BookListProps> = ({listStyle, sortDesc}) => {
     const dispatch = useAppDispatch();
     const location = useLocation().pathname;
     
@@ -23,7 +23,11 @@ export const BookList: FC<BookListProps> = ({listStyle}) => {
     const books = useAppSelector(getAllBooks());
     let booksToShow = location === '/books/all' ? books : filterBooksByCategory(books, category?.name);
 
-    booksToShow = [...booksToShow].sort((book1, book2) => book2.rating - book1.rating);
+    if (sortDesc) {
+        booksToShow = [...booksToShow].sort((book1, book2) => book2.rating - book1.rating);
+    } else {
+        booksToShow = [...booksToShow].sort((book1, book2) => book1.rating - book2.rating);
+    }
 
     useEffect(() => {
         dispatch(fetchCategories());

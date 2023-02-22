@@ -1,6 +1,8 @@
 import { BooksView } from '../../pages/main/main-page';
 
 export interface AppSearchBarProps {
+    desc: boolean;
     bookView: BooksView;
-    handleClick: (view: BooksView) => void;
+    changeView: (view: BooksView) => void;
+    toggleSort: () => void;
 }

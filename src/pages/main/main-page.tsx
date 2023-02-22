@@ -14,6 +14,7 @@ export interface BooksView {
 }
 
 export const MainPage = () => {
+  const [sortDesc, setSortDesc] = useState(true);
   const [viewStyle, setViewStyle] = useState<BooksView>( {style: 'tile'} );
   const booksLoading = useSelector(isBooksLoading());
   const categoriesLoading = useSelector(isCategoriesLoading());
@@ -23,14 +24,14 @@ export const MainPage = () => {
   const isLoading = booksLoading || categoriesLoading;
   const isError = booksError || categoriesError;
 
-  const handleClick = (view: BooksView) => {
+  const changeView = (view: BooksView) => {
     setViewStyle(view);
   }
 
   return (
     <div className={classNames('content-wrapper', isLoading || isError ? 'hidden' : undefined)}>
-      <AppSearchBar bookView={viewStyle} handleClick={handleClick} />
-      <BookList listStyle={viewStyle.style} />
+      <AppSearchBar bookView={viewStyle} desc={sortDesc} changeView={changeView} toggleSort={() => setSortDesc(!sortDesc)} />
+      <BookList listStyle={viewStyle.style} sortDesc={sortDesc} />
     </div>
   );
 }

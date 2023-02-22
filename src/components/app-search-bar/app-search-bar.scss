@@ -148,6 +148,9 @@
             padding: 11px;
             height: 38px;
         }
+        svg.asc {
+            transform: scale(1, -1);
+        }
     }
     .sort-text {
         display: none;
