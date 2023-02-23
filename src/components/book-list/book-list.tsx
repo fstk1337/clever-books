@@ -54,6 +54,7 @@ export const BookList: FC<BookListProps> = ({listStyle, sortDesc, searchText}) =
                     image={book.image ? `https://strapi.cleverland.by${book.image.url}` : undefined}
                     stars={Math.trunc(book.rating)}
                     title={book.title}
+                    highlight={searchText}
                     author={book.authors[0]}
                     free={book.booking ? !book.booking.order : true}
                     busyUntil={convertDateToDDMM(book.booking?.dateOrder)}
@@ -66,6 +67,7 @@ export const BookList: FC<BookListProps> = ({listStyle, sortDesc, searchText}) =
                     image={book.image ? `https://strapi.cleverland.by${book.image.url}` : undefined}
                     stars={book.rating}
                     title={book.title}
+                    highlight={searchText}
                     author={book.authors[0]}
                     free={book.booking ? !book.booking.order : true}
                     busyUntil={convertDateToDDMM(book.booking?.dateOrder)}

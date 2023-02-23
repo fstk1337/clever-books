@@ -4,6 +4,7 @@ import { getButtonOptions } from 'src/utils/button-options';
 
 import { AppButton } from '../app-button/app-button';
 import { BookStars } from '../book-stars/book-stars';
+import { BookTitleHighlighter } from '../book-title-highlighter/book-title-highlighter';
 
 import { BookItemProps } from './book-item-props';
 
@@ -18,7 +19,9 @@ export const BookItem: FC<BookItemProps> = (props) =>  {
                 <img className='item-image' src={props.image} alt='' />
                 <div className="item-text">
                     <div className='item-info'>
-                        <div className="item-title">{props.title}</div>
+                        <BookTitleHighlighter highlight={props.highlight}>
+                            <div className="item-title">{props.title}</div>
+                        </BookTitleHighlighter>
                         <div className="item-author">{props.author}</div>
                         <div className='item-stars-top'>
                             {(props.stars <= 0 || props.stars >5) && 'ещё нет оценок'}
