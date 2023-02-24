@@ -45,8 +45,8 @@ export const BookMain: FC<BookMainProps> = ({book}) => {
                     </div>
                     <div className='book-info-reserve'>
                         <div className='book-info-text'>
-                            <div className='book-title'>{book.title}</div>
-                            <div className='book-author'>{book.authors}</div>
+                            <div className='book-title' data-test-id='book-title'>{book.title}</div>
+                            <div className='book-author'>{book.authors.join(', ')}</div>
                         </div>
                         <AppButton styles={['book-btn-big', buttonStyle]} label={buttonText} />
                         {useWindowWidth() >= 1200 &&
@@ -131,7 +131,7 @@ export const BookMain: FC<BookMainProps> = ({book}) => {
                             </ul>
                             <ul>
                                 <li className='detail-data'>
-                                    {book.categories[0]}
+                                    {book.categories.join(', ')}
                                 </li>
                                 <li className='detail-data'>
                                     {book.weight}

@@ -4,6 +4,7 @@ import { getButtonOptions } from 'src/utils/button-options';
 
 import { AppButton } from '../app-button/app-button';
 import { BookStars } from '../book-stars/book-stars';
+import { BookTitleHighlighter } from '../book-title-highlighter/book-title-highlighter';
 
 import { BookCardProps } from './book-card-props';
 
@@ -24,7 +25,9 @@ export const BookCard: FC<BookCardProps> = (props) => {
                         }
                     </div>
                     <div className="card-info">
-                        <div className="card-title">{props.title}</div>
+                        <BookTitleHighlighter highlight={props.highlight}>
+                            <div className='card-title'>{props.title}</div>
+                        </BookTitleHighlighter>
                         <div className="card-author">{props.author}</div>
                     </div>
                 </div>

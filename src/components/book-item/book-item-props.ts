@@ -3,6 +3,7 @@ export interface BookItemProps {
     image?: string;
     stars: number;
     title: string;
+    highlight: string;
     author: string;
     free: boolean;
     busyUntil?: string;

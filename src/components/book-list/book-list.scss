@@ -26,3 +26,27 @@
     row-gap: 16px;
     padding-bottom: 62px;
 }
+
+.no-books-message {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    letter-spacing: 0.1px;
+    color: #A7A7A7;
+    width: 100%;
+    margin-top: 118px;
+    @media screen and (min-width: 600px) {
+        display: block;
+        font-size: 32px;
+        line-height: 40px;
+        margin-top: 202px;
+    }
+    @media screen and (min-width: 1200px) {
+        margin-top: 168px;
+    }
+}
