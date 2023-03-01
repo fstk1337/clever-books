@@ -1,0 +1,38 @@
+@import '../../index.scss';
+
+.auth-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    min-height: 568px;
+    background: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+    @media screen and (min-width: 600px) {
+        min-height: 700px;
+        align-items: center;
+    }
+}
+
+.auth-wrapper {
+    position: relative;
+}
+
+.auth-heading {
+    display: block;
+    position: absolute;
+    top: -40px;
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.1px;
+    color: #FFFFFF;
+    @media screen and (min-width: 600px) {
+        margin: 0;
+        top: -99px;
+        font-size: 32px;
+        line-height: 40px;
+    }
+}
